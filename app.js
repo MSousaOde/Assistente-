@@ -3,7 +3,7 @@ function enviarComando() {
     const input = document.getElementById('userInput').value;
     const resposta = document.getElementById('resposta');
 
-    fetch("https://SEU_BACKEND_URL/comando", {
+    fetch("https://laura-backend-3vc0.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ texto: input })
