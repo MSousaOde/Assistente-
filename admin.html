@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Painel da Laura</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Histórico de Conversas</h1>
+    <input type="password" id="senha" placeholder="Digite a senha de admin" />
+    <button onclick="carregar()">Ver Histórico</button>
+    <table border="1" id="tabela" style="margin-top:20px;"></table>
+  </main>
+  <script>
+    async function carregar() {
+      const senha = document.getElementById('senha').value;
+      if (senha !== "laura2025") return alert("Senha incorreta!");
+      const res = await fetch("https://laura-backend-3vc0.onrender.com/historico");
+      const dados = await res.json();
+      const tabela = document.getElementById('tabela');
+      tabela.innerHTML = "<tr><th>Mensagem</th><th>Resposta</th><th>Data</th></tr>";
+      dados.forEach(l => {
+        tabela.innerHTML += `<tr><td>${l.mensagem}</td><td>${l.resposta}</td><td>${l.data}</td></tr>`;
+      });
+    }
+  </script>
+</body>
+</html>
